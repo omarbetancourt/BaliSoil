@@ -10,7 +10,6 @@ globals [ subak-data dam-data subaksubak-data subakdam-data
           avgharvestha
         ]
 
-;patches-own [r1]
 breed [subaks subak]
 breed [dams dam]
 breed [damdams damdam]
