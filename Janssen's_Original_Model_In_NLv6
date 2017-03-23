@@ -1,4 +1,3 @@
-patches-own [r1]
 breed [subaks subak]
 breed [dams dam]
 breed [damdams damdam]
@@ -15,6 +14,7 @@ sdc ;help variable during imitation process
  nMS ; counter for number of subaks in masceti
   MS ; masceti
   dmd masceti ulunswi pyharvest pyharvestha WSS harvest crop ricestage Ymax pest-damage pestloss totLoss source return]
+  
 dams-own [flow0 flow elevation
 WSarea ; WSarea is area (ha) of dams' watershed
 damht rain
@@ -31,12 +31,8 @@ subaksubaks-own [a b distanceab]
 globals [ subak-data dam-data subaksubak-data subakdam-data new-subaks subaks_array dams_array subakdams_array damsubaks_array Rel Rem Reh month ET RRT LRS Xf devtime yldmax pestsens growthrate cropuse totpestloss totpestlossarea totWS totWSarea avgharvestha]
 
 to setup
-  ;; (for this model to work with NetLogo's new plotting features,
-  ;; __clear-all-and-reset-ticks should be replaced with clear-all at
-  ;; the beginning of your setup procedure and reset-ticks at the end
-  ;; of the procedure.)
-  ;__clear-all-and-reset-ticks
-  ca ;OB
+
+ca
   set-default-shape subaks "circle"
   set-default-shape dams "square"
   set-default-shape damdams "line"
@@ -117,10 +113,6 @@ to setup
 end
 
 to go
-  let gr2 0
-  let gr3 0
-  set gr2 pestgrowth-rate
-  set gr3 pestgrowth-rate
   ask subaks [set mip sd + month if mip > 11 [set mip mip - 12]]
   ask subaks [
     cropplan SCC mip
