@@ -8,6 +8,7 @@ globals [ subak-data dam-data subaksubak-data subakdam-data
           totWS
           totWSarea
           avgharvestha
+	  areausedforcrops
         ]
 
 breed [subaks subak]
@@ -158,6 +159,7 @@ to go
   [set month 0
     set totWSarea 0
     set totWS 0
+    set areausedforcrops 0
     ask subaks [
       set pyharvest 0
       set pyharvestha 0
@@ -366,15 +368,6 @@ to imitatebestneighbors
       set color SCC * 10 + 5]]
 end
 
-to setup-plot
-  set-current-plot "Harvest"
-  set-plot-y-range 0 30
-  set-current-plot "Pestloss"
-  set-plot-y-range 0 1
-  set-current-plot "Waterstress"
-  set-plot-y-range 0 1
-end
-
 to plot-figs
   let totarea 0
   let totharvest 0
@@ -382,6 +375,7 @@ to plot-figs
   ask subaks [
     set totarea totarea + totharvestarea
     set totharvest totharvest + pyharvest
+    set areausedforcrops areausedforcrops + areawithsf
   ]
   set-current-plot-pen "Harvest"
   set avgharvestha totharvest / totarea
@@ -392,6 +386,9 @@ to plot-figs
 
   set-current-plot "Waterstress"
   plot totWS
+  
+  set-current-plot "Area used for Crops"
+  plot areausedforcrops
 end
 
 ;========================= data ========================================
